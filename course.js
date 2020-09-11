@@ -110,7 +110,6 @@ function getJSON(url, callback) {
  * @param {HTMLElement} target 
  */
 function renderNavigation(playlist, target) {
-	var player = '';
 
     /**
      * Prepare HTML for the element by its properties
@@ -138,7 +137,7 @@ function renderNavigation(playlist, target) {
 		} else if (child.hasOwnProperty('file')) {
 			out += '<span class="link">';
 			out += '<a class="tocLink" href="javascript:void(0);"';
-			out +=' onclick="javascript:videoGoTo' + player;
+			out +=' onclick="javascript:videoGoTo' + child.file.player;
 			out += '(' + child.file.video_id + ',' + child.file.time + ');">';
 			out += child.title;
 			out += '</a></span>';
