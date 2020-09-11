@@ -96,7 +96,7 @@ var makeRequest = function(url, callback) {
 
 var sources;
 var playlist;
-var data_json = 'http://localhost:8000/playlist.json';
+var data_json = 'https://gist.githubusercontent.com/sitex/d52e7053dd32c4bbc599d88282eb5410/raw/playlist.json';
 makeRequest(data_json,  function(err, data) {
 	if (err != null) {
 		console.error(err);
