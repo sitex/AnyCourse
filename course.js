@@ -161,11 +161,12 @@ function renderNavigation(playlist, target) {
         level++;
         children.forEach(function (child) {
             if (child.hasOwnProperty('file')) {
+                // use 2nd player for 'moves'
                 child.file.player = (level === 4) ? '2' : '';
             }
             out += "<li>";
             out += renderChild(child);
-            if (typeof child.children !== 'undefined') {
+            if (child.hasOwnProperty('children')) {
                 out += renderChildren(child.children, level);
             }
             out += "</li>";
@@ -175,7 +176,7 @@ function renderNavigation(playlist, target) {
 
     if (target) {
         var level = 0; // default
-        target.innerHTML = renderChildren(playlist.my_tree.collection, level);;
+        target.innerHTML = renderChildren(playlist.my_tree.collection, level);
     }
 }
 
@@ -196,7 +197,8 @@ getJSON(data_json, function (err, data) {
 /**
  * Add styles for Navigation
  */
-var style_tag = document.createElement("style");
 var nav_styles = "ul, li { list-style: none; margin: 5px 0; padding: 0; }";
-style_tag.appendChild(document.createTextNode(nav_styles))
+// create <style> with Navigation styles inside <head>
+var style_tag = document.createElement("style");
+style_tag.appendChild(document.createTextNode(nav_styles));
 document.getElementsByTagName("head")[0].appendChild(style_tag);
